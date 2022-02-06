@@ -1,0 +1,37 @@
+<div class="ui container">
+  <h3 class="ui green segment header">
+    Extrato de Transferências
+  </h3>
+  <table *ngIf="!statusMessage?.visivel; else sem_registros" class="ui table">
+    <thead>
+    <tr>
+      <th>Id</th>
+      <th>Data</th>
+      <th>Destino</th>
+      <th>Valor</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let transferencia of listaTransferencias">
+      <td [textContent]="transferencia.id"></td>
+      <td [textContent]="transferencia.data"></td>
+      <td [textContent]="transferencia.destino"></td>
+      <td [textContent]="transferencia.valor"></td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+<ng-template #sem_registros>
+  <div [ngClass]="statusMessage.className">
+    <!--
+    <i [ngClass]="statusMessage.icon"></i>
+    -->
+    <i class="icon" [textContent]="statusMessage.icon"></i>
+    <div class="content">
+      <header [textContent]="statusMessage.title" class="header">Nenhum Registro</header>
+      <div [textContent]="statusMessage.content" class="ui description">
+        Nenhuma transferência foi encontrada para ser exibida aqui.
+      </div>
+    </div>
+  </div>
+</ng-template>
